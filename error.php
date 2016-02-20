@@ -10,6 +10,7 @@
 <body>
 	<div class="container">
 		<h2> Login Failed </h2>
+		<p> click <a href="login_part2.php">here</a> to login again </p> 
 
 	</div>
 

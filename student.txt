@@ -1,0 +1,9 @@
+1. login successful (disappear after few seconds)
+2. welcome studentUsername
+3. Left Panel : currentCourses ---> course.php
+				notifications ---->
+				logout ------>logout.php
+				courseCatalog ----->
+				myPerformance -----> 
+4. Right Panel : dynamic
+

@@ -63,7 +63,9 @@
 			//print $result;
 		}
 		//echo "flag4";
-		echo $msg;
+		$_SESSION['message'] = $msg;
+		header('Location: reg_success.php');
+		//echo $msg;
 	}
 
 	if(isset($_POST['LOGIN']))

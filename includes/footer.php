@@ -1,4 +1,4 @@
 		</div>
-		<div id="footer">Copyright 2007, Widget Corp</div>
+		<div id="footer">2016, CMS</div>
 	</body>
 </html>

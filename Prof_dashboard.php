@@ -15,23 +15,34 @@
 				{
 					echo "Session variables can't be retrieved";
 				}
-				
-				//echo $myid;
-				//echo $mytype;
-				// if(strcmp($user_type,"Student")==0){
-				// 	$sql = "SELECT * FROM student where Student_id = '$user_id' "; 
-				// }
+
 				if (strcmp($user_type,"Professor")==0) 
 				{
 					$sql = "SELECT * FROM professor where Professor_id = '$user_id' "; 
 				}
-				// elseif (strcmp($user_type,"Parent")==0) {
-				// 	$sql = "SELECT * FROM parent where Parent_id = '$user_id' "; 
-				// }
 
 				$result = mysql_query($sql,$conn);
 				$row = mysql_fetch_array($result, MYSQL_ASSOC);
 				echo "<h2> Welcome ".$row['Firstname']."</h2>";
+			?>
+
+			<?php
+				if(isset($_GET['notify']))
+				{
+					echo "<h4>students notified...</h4>";
+				}
+				elseif(isset($_GET['upload_lec']))
+				{
+					include("includes/select_lec.php");
+				}
+				elseif(isset($_GET['upload_assign']))
+				{
+					include("includes/select_assign.php");
+				}
+				elseif(isset($_GET['design']))
+				{
+					echo "<h4>Courses designed...</h4>";
+				}
 			?>
 			
 		</td>

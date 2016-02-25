@@ -20,7 +20,7 @@
 		if($count==0)
 		{
 			echo "invalid details";
-			header('Location: view_performance.php');
+			header('Location: parent_dashboard.php?view_performance');
 		}
 		else
 		{

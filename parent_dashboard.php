@@ -15,15 +15,7 @@
 				{
 					echo "Session variables can't be retrieved";
 				}
-				
-				//echo $myid;
-				//echo $mytype;
-				// if(strcmp($user_type,"Student")==0){
-				// 	$sql = "SELECT * FROM student where Student_id = '$user_id' "; 
-				// }
-				// elseif (strcmp($user_type,"Professor")==0) {
-				// 	$sql = "SELECT * FROM professor where Professor_id = '$user_id' "; 
-				// }
+
 				if (strcmp($user_type,"Parent")==0) 
 				{
 					$sql = "SELECT * FROM parent where Parent_id = '$user_id' "; 
@@ -34,6 +26,12 @@
 				echo "<h2> Welcome ".$row['Firstname']."</h2>";
 			?>
 			
+			<?php
+				if(isset($_GET['view_performance'])||isset($_GET['view_enrollments']))
+				{
+					include("includes/select_my_ward.php");
+				}
+			?>
 		</td>
 <?php include("includes/parent_dashboard_down.php"); ?>
 

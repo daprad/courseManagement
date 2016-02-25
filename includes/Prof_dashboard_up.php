@@ -3,11 +3,11 @@
 	<tr>
 		<td id="navigation">
 			<ul>
-			  <li><a class="active" href="#Home">Home</a></li>
-			  <li><a href="#notify">Notify Students</a></li>
-			  <li><a href="upload_lec.php">Upload Lecture</a></li>
-			  <li><a href="upload_assign.php">Upload Assignment</a></li>
-			  <li><a href="#result">Design Course</a></li>
+			  <li><a class="active" href="Prof_dashboard.php">Home</a></li>
+			  <li><a href="Prof_dashboard.php?notify">Notify Students</a></li>
+			  <li><a href="Prof_dashboard.php?upload_lec">Upload Lecture</a></li>
+			  <li><a href="Prof_dashboard.php?upload_assign">Upload Assignment</a></li>
+			  <li><a href="Prof_dashboard.php?design">Design Course</a></li>
 			  <li><a href="logout.php">Logout</a></li>
 			</ul>
 		</td>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2016 at 09:59 AM
+-- Generation Time: Feb 25, 2016 at 02:46 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -32,16 +32,7 @@ CREATE TABLE IF NOT EXISTS `assign_file` (
   `deadline` date DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `assign_file`
---
-
-INSERT INTO `assign_file` (`Assign_id`, `file`, `deadline`, `type`, `size`) VALUES
-(1, '31248-admit-card.pdf', '2003-08-09', 'applicatio', 230),
-(2, '8175-admit-card.pdf', '0000-00-00', 'applicatio', 230),
-(3, '36252-home_ticket.pdf', '1993-02-03', 'applicatio', 157);
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -55,15 +46,6 @@ CREATE TABLE IF NOT EXISTS `contain_assign` (
   `week` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `contain_assign`
---
-
-INSERT INTO `contain_assign` (`Assign_id`, `Course_id`, `week`) VALUES
-(1, 2, NULL),
-(0, 2, NULL),
-(3, 2, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -75,13 +57,6 @@ CREATE TABLE IF NOT EXISTS `contain_lecture` (
   `Course_id` int(11) DEFAULT NULL,
   `week` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `contain_lecture`
---
-
-INSERT INTO `contain_lecture` (`Lec_id`, `Course_id`, `week`) VALUES
-(7, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `Start_date` date DEFAULT NULL,
   `Duration` varchar(30) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
@@ -104,7 +79,8 @@ CREATE TABLE IF NOT EXISTS `course` (
 INSERT INTO `course` (`Course_id`, `Course_name`, `Start_date`, `Duration`, `Department`) VALUES
 (1, 'DBMS', '2016-07-23', '8 weeks', 'Computer science'),
 (2, 'PDS', '2016-09-15', '12 weeks', 'Computer science'),
-(3, 'Algorithms', '2016-08-15', '11 weeks', 'Computer science');
+(3, 'Algorithms', '2016-08-15', '11 weeks', 'Computer science'),
+(4, 'CAOS', '2016-02-11', '9 weeks', 'Computer science');
 
 -- --------------------------------------------------------
 
@@ -125,8 +101,10 @@ CREATE TABLE IF NOT EXISTS `enrolled_in` (
 INSERT INTO `enrolled_in` (`Student_id`, `Grade`, `Course_id`) VALUES
 (1, NULL, 1),
 (2, NULL, 2),
-(2, NULL, 3),
-(1, 'EX', 2);
+(2, 'A', 3),
+(1, 'EX', 2),
+(2, NULL, 1),
+(1, 'A', 3);
 
 -- --------------------------------------------------------
 
@@ -140,20 +118,7 @@ CREATE TABLE IF NOT EXISTS `lecture_file` (
   `Lec_name` varchar(255) DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `lecture_file`
---
-
-INSERT INTO `lecture_file` (`Lec_id`, `file`, `Lec_name`, `type`, `size`) VALUES
-(1, '54718-admit-card.pdf', 'linkedlist', 'applicatio', 230),
-(2, '21583-admit-card.pdf', 'linkedlist', 'applicatio', 230),
-(3, '88638-algorithms.pdf', 'algo lec 1', 'applicatio', 326),
-(4, '63026-data-structures.pdf', 'data structure', 'applicatio', 324),
-(5, '14544-mcm-renewal-form.pdf', 'mcm', 'applicatio', 15),
-(6, '12601-linkedin.pdf', 'linked', 'applicatio', 11),
-(7, '15867-new_form_back_page.pdf', 'ksjdfkl', 'applicatio', 22);
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -307,17 +272,17 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `assign_file`
 --
 ALTER TABLE `assign_file`
-MODIFY `Assign_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `Assign_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-MODIFY `Course_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `Course_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `lecture_file`
 --
 ALTER TABLE `lecture_file`
-MODIFY `Lec_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `Lec_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `parent`
 --

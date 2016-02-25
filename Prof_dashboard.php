@@ -18,15 +18,16 @@
 				
 				//echo $myid;
 				//echo $mytype;
-				if(strcmp($user_type,"Student")==0){
-					$sql = "SELECT * FROM student where Student_id = '$user_id' "; 
-				}
-				elseif (strcmp($user_type,"Professor")==0) {
+				// if(strcmp($user_type,"Student")==0){
+				// 	$sql = "SELECT * FROM student where Student_id = '$user_id' "; 
+				// }
+				if (strcmp($user_type,"Professor")==0) 
+				{
 					$sql = "SELECT * FROM professor where Professor_id = '$user_id' "; 
 				}
-				elseif (strcmp($user_type,"Parent")==0) {
-					$sql = "SELECT * FROM parent where Parent_id = '$user_id' "; 
-				}
+				// elseif (strcmp($user_type,"Parent")==0) {
+				// 	$sql = "SELECT * FROM parent where Parent_id = '$user_id' "; 
+				// }
 
 				$result = mysql_query($sql,$conn);
 				$row = mysql_fetch_array($result, MYSQL_ASSOC);

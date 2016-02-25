@@ -17,8 +17,13 @@
 	           "Course Name :{$row['Course_name']}  <br> ".
 	             "Start_date : {$row['Start_date']} <br> ".
 	             "Duration : {$row['Duration']} <br> ".
-	             "Department : {$row['Department']} <br> ".
-	             "--------------------------------<br>";
+	             "Department : {$row['Department']} <br> ";
+	             //$_SESSION['Course_id']=$row['Course_id'];
+	             echo "<a href='view_lecture.php?"."courseid=".$row['Course_id']."'"."> Lectures </a></br>";
+	             echo "<a href='view_assignment.php?"."courseid=".$row['Course_id']."'"."> Assignments </a>";
+	             echo "</br>--------------------------------<br>";
+
+
 	        }
 		?>
 		</td>

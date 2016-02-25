@@ -30,17 +30,17 @@ if(isset($_POST['btn-upload']))
 	{
 		$sql="INSERT INTO lecture_file(file,Lec_name,type,size) VALUES('$final_file','$l_name','$file_type','$new_size')";
 		mysql_query($sql);
-		$sql="SELECT Lecture_id FROM lecture_file where file='$final_file' AND Lec_name='$l_name' ";
+		$sql="SELECT Lec_id FROM lecture_file where file='$final_file' AND Lec_name='$l_name' ";
 		$res=mysql_query($sql);
 		$result=mysql_fetch_array($res);
-		$result=$result['Lecture_id'];
+		$result=$result['Lec_id'];
 
 		$sql="SELECT Course_id FROM course where Course_name='$c_name' ";
 		$res=mysql_query($sql);
 		$result1=mysql_fetch_array($res);
 		$result1=$result1['Course_id'];
 
-		$sql="INSERT INTO contain_lecture(Lecture_id,Course_id) VALUES('$result','$result1') ";
+		$sql="INSERT INTO contain_lecture(Lec_id,Course_id) VALUES('$result','$result1') ";
 		mysql_query($sql);
 		?>
 		<script>

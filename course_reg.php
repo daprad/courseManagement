@@ -50,9 +50,8 @@
         if(isset($_POST['register']))
         {
 
-          echo "hello"."</br>";
           $course_id = mysql_escape_string($_POST['courseid']);
-          echo $course_id."</br>";
+          //echo $course_id."</br>";
 
           if($course_id <= $max_courseid)
           {

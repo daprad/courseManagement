@@ -16,22 +16,5 @@
 </form>
 
 <?php
-	if(isset($_GET['success']))
-	{
-		?>
-        <label>File Uploaded Successfully...  </label>
-        <?php
-	}
-	else if(isset($_GET['fail']))
-	{
-		?>
-        <label>Problem While File Uploading !</label>
-        <?php
-	}
-	else
-	{
-		?>
-        <label>Try to upload any files(PDF, DOC, EXE, VIDEO, MP3, ZIP,etc...)</label>
-        <?php
-	}
+
 ?>

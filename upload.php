@@ -45,7 +45,7 @@ if(isset($_POST['btn-upload']))
 		?>
 		<script>
 		alert('successfully uploaded');
-        window.location.href='upload_assign.php?success';
+        window.location.href='Prof_dashboard.php?success';
         </script>
 		<?php
 	}
@@ -54,7 +54,7 @@ if(isset($_POST['btn-upload']))
 		?>
 		<script>
 		alert('error while uploading file');
-        window.location.href='upload_assign.php?fail';
+        window.location.href='Prof_dashboard.php?fail';
         </script>
 		<?php
 	}

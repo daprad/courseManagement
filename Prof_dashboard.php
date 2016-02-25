@@ -43,6 +43,18 @@
 				{
 					echo "<h4>Courses designed...</h4>";
 				}
+				elseif(isset($_GET['success']))
+				{
+					?>
+			        <label>File Uploaded Successfully...  </label>
+			        <?php
+				}
+				elseif(isset($_GET['fail']))
+				{
+					?>
+			        <label>Problem While File Uploading !</label>
+			        <?php
+				}
 			?>
 			
 		</td>

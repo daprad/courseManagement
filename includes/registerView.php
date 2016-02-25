@@ -9,7 +9,7 @@
   		<div class="form-group">
 		    <label for="exampleInputfname1">Firstname</label>
 		    <input type="text" name="fname" class="form-control" id="exampleInputfname1" placeholder="fname" required>
-			</div>
+		</div>
 
 		<div class="form-group">
 		    <label for="exampleInputlname1">Lastname</label>

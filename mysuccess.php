@@ -119,9 +119,21 @@
 			$_SESSION["User_id"] = $row[$id_type];
 			$_SESSION["User_type"] = $user_type;
 
-			header('Location: dashboard.php');
-			// echo $_SESSION['User_id'];
-			// echo $_SESSION['User_type'];
+			if(strcmp($user_type,"Student")==0)
+			{
+				header('Location: student_dashboard.php');
+			}
+			elseif (strcmp($user_type,"Professor")==0) 
+			{
+				header('Location: Prof_dashboard.php');
+			}
+			elseif (strcmp($user_type,"Parent")==0) 
+			{
+				header('Location: parent_dashboard.php');
+			}
+				
+				// echo $_SESSION['User_id'];
+				// echo $_SESSION['User_type'];
 		}
 
 	}

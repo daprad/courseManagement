@@ -18,8 +18,8 @@ if(isset($_POST['btn-submit']))
 	$folder="syllabus/";  
 	
 	// make file name in lower case
-	$new_file_name = strtolower($course_name);
-	$final_file=str_replace('syllabus','-',$new_file_name);
+	$new_file_name = strtolower($c_name);
+	$final_file=str_replace('syll','-',$new_file_name);
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{

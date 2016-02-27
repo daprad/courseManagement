@@ -20,7 +20,8 @@
 				{
 					$sql = "SELECT * FROM student where Student_id = '$user_id' "; 
 				}
-
+				
+				$sql = "SELECT * FROM student where Student_id = '$user_id' "; 
 				$result = mysql_query($sql,$conn);
 				$row = mysql_fetch_array($result, MYSQL_ASSOC);
 				echo "<h2> Welcome ".$row['Firstname']."</h2>";
@@ -30,13 +31,38 @@
 			<?php
 				if(isset($_GET['notify']))
 				{
-					echo "notify pressed";
+					$student_id = mysql_escape_string($_SESSION['User_id']);
+					$sql = "SELECT * FROM course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
+			        $retval = mysql_query( $sql, $conn );
+			        if(! $retval ) 
+			        {
+			        	die('Could not get data: ' . mysql_error());
+			        }
+			        while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
+			        {
+			            echo "<b> Course_id : {$row['Course_id']} ". 
+			            "Course Name :{$row['Course_name']} ".
+			            "Department : {$row['Department']}  </b> <br>";
+			            
+			            $nestedsql = "SELECT Message,Date FROM notification WHERE Course_id = {$row['Course_id']} ORDER BY Date";
+			            $nestedretval = mysql_query( $nestedsql, $conn );
+				        if(! $nestedretval ) 
+				        {
+				        	die('Could not get data: ' . mysql_error());
+				        }
+				        while($nestedrow = mysql_fetch_array($nestedretval, MYSQL_ASSOC)) 
+				        {
+				        	echo "</br> ";
+				        	echo "{$nestedrow['Date']}" . "...............". "<i> {$nestedrow['Message']} </i> <br>";
+				        }
+			            echo "</br> <br>";
+			        }
 				}
 				elseif(isset($_GET['current_courses']))
 				{
 					 
 					$student_id = mysql_escape_string($_SESSION['User_id']);
-					$sql = "SELECT * FROM Course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
+					$sql = "SELECT * FROM course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
 			        $retval = mysql_query( $sql, $conn );
 			        if(! $retval ) 
 			        {
@@ -75,7 +101,7 @@
 
 				        echo "Enter the Course_id of course to register <br><br>";
 
-				        $sql = "SELECT * FROM Course WHERE Course_id NOT IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
+				        $sql = "SELECT * FROM course WHERE Course_id NOT IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
 				        mysql_select_db('coursemng');
 				        $retval = mysql_query( $sql, $conn );
 

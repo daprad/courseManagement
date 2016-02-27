@@ -29,7 +29,7 @@
 			<?php
 				if(isset($_GET['notify']))
 				{
-					echo "<h4>students notified...</h4>";
+					include("includes/notify_prof.php");
 				}
 				elseif(isset($_GET['upload_lec']))
 				{
@@ -41,7 +41,7 @@
 				}
 				elseif(isset($_GET['design']))
 				{
-					echo "<h4>Courses designed...</h4>";
+					include("includes/design_course.php");
 				}
 				elseif(isset($_GET['success']))
 				{

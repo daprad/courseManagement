@@ -43,6 +43,10 @@
 				{
 					include("includes/design_course.php");
 				}
+				elseif(isset($_GET['grade']))
+				{
+					include("includes/assign_grades.php");
+				}
 				elseif(isset($_GET['success']))
 				{
 					?>

@@ -1,4 +1,8 @@
-add preRequisit table
-notifications
-course info
+add preRequisit table - ankit
+duration (in design course ) - pradeepta
+syllabus link in courses(current,upcoming,catalog) - pradeepta
+upcoming course - ankit
+contact info of prof - vardaan
+payments - pradeepta
+email - vardaan
 performance update

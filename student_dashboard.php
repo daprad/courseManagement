@@ -78,7 +78,16 @@
 			            "Department : {$row['Department']} <br> ";
 			             
 			            echo "<a href='view_lecture.php?"."courseid=".$row['Course_id']."'"."> Lectures </a></br>";
-			            echo "<a href='view_assignment.php?"."courseid=".$row['Course_id']."'"."> Assignments </a>";
+			            echo "<a href='view_assignment.php?"."courseid=".$row['Course_id']."'"."> Assignments </a></br>";
+
+			            $c_id = $row['Course_id'];
+			            $newsql = "SELECT email_id FROM professor WHERE Professor_id IN (SELECT Professor_id FROM teaches WHERE Course_id='$c_id')";
+			            $newret = mysql_query( $newsql, $conn );
+			            $row1 = mysql_fetch_array($newret, MYSQL_ASSOC);
+
+			            $prof_mail = $row1['email_id'];
+			            //echo $prof_mail;
+			            echo "<a href='mailto:".$prof_mail."'"."> Contact Faculty </a>";
 			            echo "</br>--------------------------------<br>";
 			        }
 				
@@ -114,11 +123,19 @@
 
 				        while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
 				        {
+					        $c_id = $row['Course_id'];
+				            $newsql = "SELECT email_id FROM professor WHERE Professor_id IN (SELECT Professor_id FROM teaches WHERE Course_id='$c_id')";
+				            $newret = mysql_query( $newsql, $conn );
+				            $row1 = mysql_fetch_array($newret, MYSQL_ASSOC);
+
+				            $prof_mail = $row1['email_id'];
+
 					        echo "Course_id : {$row['Course_id']} <br> ". 
 					        "Course Name :{$row['Course_name']}  <br> ".
 					        "Start_date : {$row['Start_date']} <br> ".
 					        "Duration : {$row['Duration']} <br> ".
 					        "Department : {$row['Department']} <br> ".
+					        "Professor E-mail ID: {$prof_mail} <br> ".
 					        "--------------------------------<br>";
 					        if($max_courseid < $row['Course_id'])
 					        {

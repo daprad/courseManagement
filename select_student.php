@@ -16,10 +16,22 @@
 		$result_set = mysql_query($sql,$conn);
 		?>
 
-		<form action="submit_grade.php" method="post" enctype="multipart/form-data">
-		<h4> Select the student ID </h4>
+		<form action="" method="post" enctype="multipart/form-data">
 		<?php
+		echo "<br>";
 
+		$num_students = mysql_num_rows($result_set);
+		if($num_students<1)
+		{
+			$valid = False;
+			echo "<h3>No student registered for this course!!!</h3> ";
+		}
+		else
+		{
+			$valid = True;
+			echo "<h3>Number of students enrolled in this course are ".$num_students."</h3>";
+		}
+		$_SESSION['c_id'] = $course_id;
 		while($row=mysql_fetch_array($result_set,MYSQL_ASSOC))
 		{
 			//echo 'hello';
@@ -30,23 +42,47 @@
 			echo $row1['Firstname'];
 		    //header('Location: grade_form.php?sid='.$std_id.'&cid='.$course_id);
 		    ?>
-		    <fieldset id="group<?php echo $std_id; ?>">
-		    <input type="radio" name="group<?php echo $std_id; ?>" value='EX?sid=<?php echo $std_id.'&';?>cid=<?php echo $course_id;?>'> EX </input>
-			<input type="radio" name="group<?php echo $std_id; ?>" value='A?sid=<?php echo $std_id.'&';?>cid=<?php echo $course_id;?>'> A </input>
-			<input type="radio" name="group<?php echo $std_id; ?>" value='B?sid=<?php echo $std_id.'&';?>cid=<?php echo $course_id;?>'> B</input>
-			<input type="radio" name="group<?php echo $std_id; ?>" value='C?sid=<?php echo $std_id.'&';?>cid=<?php echo $course_id;?>'> C </input>
-			<input type="radio" name="group<?php echo $std_id; ?>" value='D?sid=<?php echo $std_id.'&';?>cid=<?php echo $course_id;?>'> D </input>
-			<input type="radio" name="group<?php echo $std_id; ?>" value='P?sid=<?php echo $std_id.'&';?>cid=<?php echo $course_id;?>'> P </input>
+		    <fieldset id="<?php echo $std_id; ?>">
+		    <input type="radio" name="<?php echo $std_id; ?>" value='EX'> EX </input>
+			<input type="radio" name="<?php echo $std_id; ?>" value='A'> A </input>
+			<input type="radio" name="<?php echo $std_id; ?>" value='B'> B</input>
+			<input type="radio" name="<?php echo $std_id; ?>" value='C'> C </input>
+			<input type="radio" name="<?php echo $std_id; ?>" value='D'> D </input>
+			<input type="radio" name="<?php echo $std_id; ?>" value='P'> P </input>
 			</fieldset>
 			<br>
 
 			<?php
 		}
-		echo 'exited from while loop';
-		?>
-		<button type="submit" class="btn btn-success" name="student_submit">Submit</button>
-		<?php
+		if($valid)
+		{
+			?>
+			
+			<button type="submit" class="btn btn-success" name="student_submit" value = '<?php echo $course_id; ?>' >Submit</button>	
+			<?php
+			$valid = False;
+		}
 	}
+
+	if(isset($_POST['student_submit']))
+	{
+		//$num = count($_POST)-1;
+		//echo "no. of grades assigned in this course are <strong>".$num."</strong>"."<br>";
+		//echo "course id is : ".$_SESSION['c_id']."<br>";
+		echo "<br><h4>Grades assigned Successfully!!!</h4>";
+		$cid = $_SESSION['c_id'];
+		foreach ($_POST as $key => $value) 
+		{
+			if(!is_numeric($value))
+			{
+				//echo $key."->".$value."<br>";
+				$my_query = "UPDATE enrolled_in SET Grade = '$value' where Student_id='$key' and Course_id='$cid' "; 
+				mysql_query($my_query,$conn);
+			}
+			
+		}
+	}
+
 	?>
 </td>
 <?php include("includes/Prof_dashboard_down.php"); ?>

@@ -64,11 +64,13 @@
 					$student_id = mysql_escape_string($_SESSION['User_id']);
 					$sql = "SELECT * FROM course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
 			        $retval = mysql_query( $sql, $conn );
-			        if(! $retval ) 
+			       	$num_count = mysql_num_rows($retval);
+
+			        if($num_count<1) 
 			        {
-			        	die('Could not get data: ' . mysql_error());
+			        	echo "<h4>No Courses to Register</h4>";
 			        }
-			        else
+				    else
 			        {
 			        	echo "<h4> You are presently enrolled in the following courses....</h4>";
 			        }
@@ -142,13 +144,19 @@
 
 				        //echo "Enter the Course_id of course to register <br><br>";
 
-				        $sql = "SELECT * FROM course WHERE Course_id NOT IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
+				        $sql = "SELECT * FROM course WHERE Course_id NOT IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') and Start_date<CURDATE() ";
 				        mysql_select_db('coursemng');
 				        $retval = mysql_query( $sql, $conn );
+				        $num_count = mysql_num_rows($retval);
 
-				        if(! $retval ) 
+				        if($num_count<1) 
 				        {
-				        	die('Could not get data: ' . mysql_error());
+				        	//die('Could not get data: ' . mysql_error());
+				        	echo "<h4>No Courses to Register</h4>";
+				        }
+				        else
+				        {
+				        	echo "<h4>These are the Courses you can register in...</h4>";	
 				        }
 
 				        $max_courseid= -999;
@@ -179,9 +187,9 @@
 					     		$max_courseid = $row['Course_id'];
 					        }
 				        }
-						?>
-				        </table>
-				        <?php
+					?>
+				    </table>
+					<?php
 
 				        if(isset($_POST['register']))
 				        {
@@ -206,6 +214,58 @@
 					        }
 
 				        }
+				}
+				elseif (isset($_GET['upcoming_courses'])) 
+				{
+					//echo "upcoming pressed";
+					$student_id = mysql_escape_string($_SESSION['User_id']);
+
+			        $sql = "SELECT * FROM course WHERE Start_date>CURDATE() ";
+			        mysql_select_db('coursemng');
+			        $retval = mysql_query( $sql, $conn );
+			        $num_count = mysql_num_rows($retval);
+
+			        if($num_count<1) 
+			        {
+			        	//die('Could not get data: ' . mysql_error());
+			        	echo "<h4>No Upcoming Courses</h4>";
+			        }
+			        else
+			        {
+			        	echo "<h4>These are the Upcoming Courses...</h4>";	
+			        }
+
+			        $max_courseid= -999;
+			        ?>
+			        
+			        <table >
+
+			        <?php
+				        while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
+				        {
+					        $c_id = $row['Course_id'];
+				            $newsql = "SELECT email_id FROM professor WHERE Professor_id IN (SELECT Professor_id FROM teaches WHERE Course_id='$c_id')";
+				            $newret = mysql_query( $newsql, $conn );
+				            $row1 = mysql_fetch_array($newret, MYSQL_ASSOC);
+
+				            $prof_mail = $row1['email_id'];
+
+					        echo "<tr><td><strong> Course Name </strong></td><td align='center'>:</td> <td> <strong>{$row['Course_name']} </strong></td></tr>".
+					        "<tr><td>Course_id </td><td align='center'>:</td> <td>{$row['Course_id']} </td></tr>". 
+			            	"<tr><td>Start_date </td><td align='center'>:</td> <td>{$row['Start_date']} </td></tr>".
+					        "<tr><td>Duration </td><td align='center'>:</td> <td>{$row['Duration']} </td></tr>".
+			            	"<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>".
+					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ".
+					        "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
+					        
+					        if($max_courseid < $row['Course_id'])
+					        {
+					     		$max_courseid = $row['Course_id'];
+					        }
+				        }
+					?>
+				    </table>
+					<?php
 				}
 				elseif(isset($_GET['perform']))
 				{

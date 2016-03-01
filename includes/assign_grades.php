@@ -19,7 +19,7 @@
     }
     else
     {
-        echo "<h4>Select course to assign grades...</h4><br>";
+        echo "<h4>Select course to assign grades...</h4>";
         while($row=mysql_fetch_array($result_set, MYSQL_ASSOC))
         {
             //echo 'hello'

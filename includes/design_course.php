@@ -58,10 +58,12 @@
 		
 		<tr>
 			<td width="40%">
+			<br>
 			<label for="exampleInputlname1">Syllabus</label>
 			</td>
 
 			<td>
+			<br>
 			<input type="file" name="file" id="exampleInputlname1" placeholder="file"/>
 			</td>
 		</tr>

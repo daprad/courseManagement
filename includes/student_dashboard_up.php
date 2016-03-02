@@ -7,6 +7,7 @@
 			  <li><a href="student_dashboard.php?notify">Notifications</a></li>
 			  <li><a href="student_dashboard.php?current_courses">Current Courses</a></li>
 			  <li><a href="student_dashboard.php?course_catalog">Course Catalog</a></li>
+			  <li><a href="student_dashboard.php?upcoming_courses">Upcoming Courses</a></li>
 			  <li><a href="student_dashboard.php?perform">Performance</a></li>
 			  <li><a href="student_dashboard.php?payment_status">Payment Status</a></li>
 			  <li><a href="logout.php">Logout</a></li>

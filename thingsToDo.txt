@@ -1,7 +1,6 @@
 add preRequisit table - ankit
-duration (in design course ) - pradeepta
-syllabus link in courses(current,upcoming,catalog) - pradeepta
-upcoming course - ankit
-contact info of prof - vardaan
+syllabus link in courses(upcoming) - pradeepta
 payments - pradeepta
-email - vardaan
+admin page - pradeepta, ankit
+report - vardhan
+

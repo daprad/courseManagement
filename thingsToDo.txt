@@ -1,6 +1,6 @@
 add preRequisit table - ankit
 syllabus link in courses(upcoming) - pradeepta
 upcoming course - ankit
-contact info of prof - vardaan
 payments - pradeepta
-email - vardaan
+admin page - pradeepta, ankit
+report - vardhan

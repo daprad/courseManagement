@@ -3,8 +3,20 @@
 <?php require_once("includes/functions.php"); ?>
 <?php include("includes/student_dashboard_up.php"); ?>
 
-<td id="page">
-    <table width="80%" border="1">
+<style>
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    width: 70%;
+}
+
+</style>
+
+<td>
+    
+    <table  align="center" >
     <tr>
     <th colspan="2">
         <?php
@@ -12,13 +24,13 @@
             $sql = "SELECT Course_name FROM course WHERE Course_id='$course_id' ";
             $res=mysql_query($sql);
             $res=mysql_fetch_array($res);
-            echo $res['Course_name'];
+            echo "<strong>".$res['Course_name']."</strong>";
         ?>
     </th>
     </tr>
     <tr>
-    <td>Lecture Name</td>
-    <td>View</td>
+    <td align="center" ><strong>Lecture Name</strong></td>
+    <td align="center" ><strong>View</strong></td>
     </tr>
     <?php
 
@@ -29,8 +41,8 @@
     {
         ?>
         <tr>
-        <td><?php echo 'Syllabus' ?></td>
-        <td><a href="syllabus/<?php echo $row['File'] ?>" target="_blank">view file</a></td>
+        <td align="center" ><?php echo 'Syllabus' ?></td>
+        <td align="center" ><a href="syllabus/<?php echo $row['File'] ?>" target="_blank">view file</a></td>
         </tr>
         <?php
     }

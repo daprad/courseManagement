@@ -127,7 +127,7 @@
 			            </tr>
 
 			            <?php
-			            echo "<tr><td colspan='3'>---------------------------------------------------------------------</td></tr>";
+			            echo "<tr><td colspan='4'>----------------------------------------------------------------------------------------------------</td></tr>";
 			        }
 			        ?>
 			        </table>
@@ -192,7 +192,7 @@
 			            	"<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>".
 					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ";
 
-					        echo "<tr><td><a href='view_syllabus.php?"."courseid=".$row['Course_id']."'"."> Syllabus </a></td><td align='center'>:</td>";
+					        echo "<tr><td>Syllabus</td><td align='center'>:</td><td><a href='view_syllabus.php?courseid=".$row['Course_id']."'"."> Click here </a></td></tr>";
 					        echo "<tr><td>Prerequisites </td><td align='center'>:</td>";
 					        echo "<td>";
 					        
@@ -286,6 +286,7 @@
 					        "<tr><td>Duration </td><td align='center'>:</td> <td>{$row['Duration']} </td></tr>".
 			            	"<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>".
 					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ";
+					        echo "<tr><td>Syllabus</td><td align='center'>:</td><td><a href='view_syllabus.php?courseid=".$row['Course_id']."'"."> Click here </a></td></tr>";
 					        echo "<tr><td>Prerequisites </td><td align='center'>:</td>";
 					        echo "<td>";
 					        
@@ -321,19 +322,23 @@
 						die('Could not get data: ' . mysql_error());
 					}
 
+					?>
+					<table >
+					<?php
 					while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
 					{
-						echo "Course_id : {$row['Course_id']} <br> ". 
-						"Course Name :{$row['Course_name']}  <br> ";
+						echo "<tr><td><strong> Course Name </strong></td><td align='center'>:</td> <td> <strong>{$row['Course_name']} </strong></td></tr> ".
+						"<tr><td>Course_id </td><td align='center'>:</td> <td>  {$row['Course_id']} </td></tr> ";
+						
 
 						$c_id = $row['Course_id'];
 						$paymentsql = "SELECT Payment_status FROM enrolled_in WHERE Student_id= '$student_id' AND Course_id='$c_id'";
 						$paymentret = mysql_query( $paymentsql, $conn );
 						$paymentrow = mysql_fetch_array($paymentret, MYSQL_ASSOC);
 						if($paymentrow['Payment_status'] == 'Yes')
-							echo "Payment Status : Yes <br>";
+							echo "<tr><td>Payment Status </td><td align='center'>:</td> <td> Yes </td></tr>";
 						else
-							echo "Payment Status : No <br>";
+							echo "<tr><td>Payment Status </td><td align='center'>:</td> <td> No </td></tr>";
 
 						$newsql = "SELECT email_id FROM professor WHERE Professor_id IN (SELECT Professor_id FROM teaches WHERE Course_id='$c_id')";
 						$newret = mysql_query( $newsql, $conn );
@@ -341,9 +346,12 @@
 
 						$prof_mail = $row1['email_id'];
 						//echo $prof_mail;
-						echo "<a href='mailto:".$prof_mail."'"."> Contact Faculty </a>";
-						echo "</br>--------------------------------<br>";
+						echo "<tr><td>E-mail</td><td align='center'>:</td> <td><a href='mailto:".$prof_mail."'"."> Contact Faculty </a></td></tr>";
+						echo "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
 					}
+					?>
+					</table>
+					<?php
 				}
 				elseif(isset($_GET['perform']))
 				{

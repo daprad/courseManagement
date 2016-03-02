@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 	<?php
-		header('Location: login_part2.php');
+		header('Location: login.php');
 	?>
 
 	</div>

@@ -33,26 +33,32 @@
 	        }
 	        else
 	        {
+	        	?>
+	        	<table>
+	        	<?php
 	        	while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
 	        	{
 	        		 $Courseid = $row['Course_id'];
 	        		 $sql = " SELECT Grade from enrolled_in where Course_id='$Courseid' and Student_id = '$student_id' ";
 	        		 $retquery = mysql_query( $sql, $conn );
 	        		 $grade = mysql_fetch_array($retquery, MYSQL_ASSOC);
-		         	 echo "Course_id : {$row['Course_id']} <br> ".
-		             "Course Name :{$row['Course_name']}  <br> ".
-		             "Department : {$row['Department']} <br> ";
+		         	 echo "<tr><td><strong> Course Name </strong></td><td align='center'>:</td> <td> <strong>{$row['Course_name']} </strong></td></tr>".
+		         	 "<tr><td>Course_id </td><td align='center'>:</td> <td>{$row['Course_id']} </td></tr>". 
+		             "<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>";
 		             if(is_null($grade['Grade']))
 		             {
-		             	echo "currently enrolled in this course </br>";
+		             	echo "<tr><td colspan='3'>currently enrolled in this course</td></tr>";
 		             }
 		             else
 		             {
-		             	echo "Grade : {$grade['Grade']}"."</br>";
+		             	echo "<tr><td>Grade </td><td align='center'>:</td> <td>{$grade['Grade']} </td></tr>";
 		             }
 		             
-		             echo "--------------------------------<br>";
-	       		 }	
+		             echo "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
+	       		 }
+	       		 ?>
+	       		 </table>
+	       		 <?php	
 	        }
 	        
 		}

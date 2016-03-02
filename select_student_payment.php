@@ -6,7 +6,7 @@
 <td id="page">
 
 	<?php
-	if(isset($_POST['course_submit']))
+	if(isset($_POST['payment_submit']))
 	{   
 		//$user_id = mysql_escape_string($_SESSION["User_id"]);
 		$course_id = $_POST['courseid'];
@@ -32,6 +32,7 @@
 			echo "<h3>Number of students enrolled in this course are ".$num_students."</h3>";
 		}
 		$_SESSION['c_id'] = $course_id;
+		echo "<table>";
 		while($row=mysql_fetch_array($result_set,MYSQL_ASSOC))
 		{
 			//echo 'hello';
@@ -39,17 +40,26 @@
 		    $sqlname = "SELECT * FROM student where Student_id = '$std_id' ";
 		    $result = mysql_query($sqlname,$conn);
 			$row1 = mysql_fetch_array($result, MYSQL_ASSOC);
-			echo $row1['Firstname'];
+			?>
+			<tr>
+			<td>
+			<?php
+			echo '<br>'.$row1['Firstname'].' '.$row1['Lastname'];
 		    //header('Location: grade_form.php?sid='.$std_id.'&cid='.$course_id);
 		    ?>
+		    </td>
+
+		    <td>
 		    <fieldset id="<?php echo $std_id; ?>">
-		    <input type="radio" name="<?php echo $std_id; ?>" value= 'Yes'> Paid </input>
-			<input type="radio" name="<?php echo $std_id; ?>" value= 'No'> Unpaid </input>
+		    <input type="radio" name="<?php echo $std_id; ?>" value='Yes'> Paid </input>
+			<input type="radio" name="<?php echo $std_id; ?>" value='No'> Not Paid </input>
 			</fieldset>
-			<br>
+			</td>
+			</tr>
 
 			<?php
 		}
+		echo "</table>";
 		if($valid)
 		{
 			?>

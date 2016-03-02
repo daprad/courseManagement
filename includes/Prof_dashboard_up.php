@@ -9,6 +9,7 @@
 			  <li><a href="Prof_dashboard.php?upload_assign">Upload Assignment</a></li>
 			  <li><a href="Prof_dashboard.php?grade">Assign Grades</a></li>
 			  <li><a href="Prof_dashboard.php?design">Design Course</a></li>
+			  <li><a href="Prof_dashboard.php?payment">Payment Status</a></li>
 			  <li><a href="logout.php">Logout</a></li>
 			</ul>
 		</td>

@@ -4,7 +4,7 @@
 <?php include("includes/student_dashboard_up.php"); ?>
 
 <td id="page">
-	<table width="80%" border="1">
+    <table width="80%" border="1">
     <tr>
     <th colspan="2">
         <?php
@@ -22,19 +22,19 @@
     </tr>
     <?php
 
-	$sql="SELECT lecture_file.Lec_id as Lec_id,file,Lec_name FROM contain_lecture,lecture_file where Course_id = '$course_id' and contain_lecture.Lec_id=lecture_file.Lec_id ";
+    $sql="SELECT lecture_file.Lec_id as Lec_id,file,Lec_name FROM contain_lecture,lecture_file where Course_id = '$course_id' and contain_lecture.Lec_id=lecture_file.Lec_id ";
     $result_set=mysql_query($sql);
 
     while($row=mysql_fetch_array($result_set))
-	{
-		?>
+    {
+        ?>
         <tr>
         <td><?php echo $row['Lec_name'] ?></td>
         <td><a href="uploads2/<?php echo $row['file'] ?>" target="_blank">view file</a></td>
         </tr>
         <?php
-	}
-	?>
+    }
+    ?>
     </table>
     
 

@@ -47,6 +47,10 @@
 				{
 					include("includes/assign_grades.php");
 				}
+				elseif(isset($_GET['payment']))
+				{
+					include("includes/confirm_payment.php");
+				}
 				elseif(isset($_GET['success']))
 				{
 					?>

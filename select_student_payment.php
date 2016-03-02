@@ -6,7 +6,7 @@
 <td id="page">
 
 	<?php
-	if(isset($_POST['course_submit']))
+	if(isset($_POST['payment_submit']))
 	{   
 		//$user_id = mysql_escape_string($_SESSION["User_id"]);
 		$course_id = $_POST['courseid'];

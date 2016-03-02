@@ -327,13 +327,13 @@
 						"Course Name :{$row['Course_name']}  <br> ";
 
 						$c_id = $row['Course_id'];
-						$paymentsql = "SELECT payment_status FROM enrolled_in WHERE Student_id= '$student_id' AND Course_id='$c_id')";
+						$paymentsql = "SELECT Payment_status FROM enrolled_in WHERE Student_id= '$student_id' AND Course_id='$c_id'";
 						$paymentret = mysql_query( $paymentsql, $conn );
 						$paymentrow = mysql_fetch_array($paymentret, MYSQL_ASSOC);
-						if($paymentrow['Payment_status'] == 1)
-							echo "Payment Status : True <br>";
+						if($paymentrow['Payment_status'] == 'Yes')
+							echo "Payment Status : Yes <br>";
 						else
-							echo "Payment Status : False <br>";
+							echo "Payment Status : No <br>";
 
 						$newsql = "SELECT email_id FROM professor WHERE Professor_id IN (SELECT Professor_id FROM teaches WHERE Course_id='$c_id')";
 						$newret = mysql_query( $newsql, $conn );

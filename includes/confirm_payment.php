@@ -38,7 +38,7 @@
         } 
         ?>
         <br>
-        <button type="submit" class="btn btn-success" name="course_submit">Submit</button>
+        <button type="submit" class="btn btn-success" name="payment_submit">Submit</button>
         
         <?php   
     }

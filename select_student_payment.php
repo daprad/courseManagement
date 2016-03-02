@@ -43,8 +43,8 @@
 		    //header('Location: grade_form.php?sid='.$std_id.'&cid='.$course_id);
 		    ?>
 		    <fieldset id="<?php echo $std_id; ?>">
-		    <input type="radio" name="<?php echo $std_id; ?>" value= 0> Paid </input>
-			<input type="radio" name="<?php echo $std_id; ?>" value= 1> Unpaid </input>
+		    <input type="radio" name="<?php echo $std_id; ?>" value= 'Yes'> Paid </input>
+			<input type="radio" name="<?php echo $std_id; ?>" value= 'No'> Unpaid </input>
 			</fieldset>
 			<br>
 
@@ -69,7 +69,7 @@
 		$cid = $_SESSION['c_id'];
 		foreach ($_POST as $key => $value) 
 		{
-			if(is_numeric($value))
+			if(!is_numeric($value))
 			{
 				//echo $key."->".$value."<br>";
 				$my_query = "UPDATE enrolled_in SET Payment_status = '$value' where Student_id='$key' and Course_id='$cid' "; 

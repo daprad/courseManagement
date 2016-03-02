@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2016 at 07:50 AM
+-- Generation Time: Mar 02, 2016 at 04:38 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -224,7 +224,10 @@ CREATE TABLE IF NOT EXISTS `prerequisite` (
 --
 
 INSERT INTO `prerequisite` (`c_id`, `pre_id`) VALUES
-(3, 2);
+(3, 2),
+(10, 9),
+(4, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 

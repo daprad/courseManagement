@@ -172,6 +172,9 @@
 				            $newret = mysql_query( $newsql, $conn );
 				            $row1 = mysql_fetch_array($newret, MYSQL_ASSOC);
 
+				            $query1 = "SELECT * FROM course WHERE Course_id IN (SELECT pre_id FROM prerequisite WHERE c_id = '$c_id') "; 
+				            $result1 = mysql_query( $query1, $conn );
+
 				            $prof_mail = $row1['email_id'];
 
 					        echo "<tr><td><strong> Course Name </strong></td><td align='center'>:</td> <td> <strong>{$row['Course_name']} </strong></td></tr>".
@@ -179,8 +182,22 @@
 			            	"<tr><td>Start_date </td><td align='center'>:</td> <td>{$row['Start_date']} </td></tr>".
 					        "<tr><td>Duration </td><td align='center'>:</td> <td>{$row['Duration']} </td></tr>".
 			            	"<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>".
-					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ".
-					        "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
+					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ";
+
+					        echo "<tr><td>Prerequisites </td><td align='center'>:</td>";
+					        echo "<td>";
+					        
+					        if($result1 === FALSE) 
+					        { 
+							    die(mysql_error()); // TODO: better error handling
+							}
+					        
+					        while($my_row1 = mysql_fetch_array($result1, MYSQL_ASSOC))
+					        {	
+					        	echo $my_row1['Course_name'].", ";
+					        }
+					        echo "</td></tr>"; 
+					        echo "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
 					        
 					        if($max_courseid < $row['Course_id'])
 					        {
@@ -248,6 +265,9 @@
 				            $newret = mysql_query( $newsql, $conn );
 				            $row1 = mysql_fetch_array($newret, MYSQL_ASSOC);
 
+				            $query1 = "SELECT * FROM course WHERE Course_id IN (SELECT pre_id FROM prerequisite WHERE c_id = '$c_id') "; 
+							$result1 = mysql_query( $query1, $conn );
+
 				            $prof_mail = $row1['email_id'];
 
 					        echo "<tr><td><strong> Course Name </strong></td><td align='center'>:</td> <td> <strong>{$row['Course_name']} </strong></td></tr>".
@@ -255,8 +275,21 @@
 			            	"<tr><td>Start_date </td><td align='center'>:</td> <td>{$row['Start_date']} </td></tr>".
 					        "<tr><td>Duration </td><td align='center'>:</td> <td>{$row['Duration']} </td></tr>".
 			            	"<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>".
-					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ".
-					        "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
+					        "<tr><td>Professor E-mail ID </td><td align='center'>:</td> <td> {$prof_mail} </td></tr> ";
+					        echo "<tr><td>Prerequisites </td><td align='center'>:</td>";
+					        echo "<td>";
+					        
+					        if($result1 === FALSE) 
+					        { 
+							    die(mysql_error()); // TODO: better error handling
+							}
+					        
+					        while($my_row1 = mysql_fetch_array($result1, MYSQL_ASSOC))
+					        {	
+					        	echo $my_row1['Course_name'].", ";
+					        }
+					        echo "</td></tr>"; 
+					        echo "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
 					        
 					        if($max_courseid < $row['Course_id'])
 					        {

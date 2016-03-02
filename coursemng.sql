@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Feb 27, 2016 at 07:11 AM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Host: 127.0.0.1
+-- Generation Time: Mar 02, 2016 at 07:50 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `assign_file` (
   `deadline` date DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assign_file`
@@ -101,17 +101,18 @@ CREATE TABLE IF NOT EXISTS `course` (
   `Department` varchar(255) DEFAULT NULL,
   `End_date` date NOT NULL,
   `File` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
 --
 
 INSERT INTO `course` (`Course_id`, `Course_name`, `Start_date`, `Duration`, `Department`, `End_date`, `File`) VALUES
-(1, 'DBMS', '2016-07-23', '8 weeks', 'Computer science', '0000-00-00', ''),
-(2, 'PDS', '2016-09-15', '12 weeks', 'Computer science', '0000-00-00', ''),
-(3, 'Algorithms', '2016-08-15', '11 weeks', 'Computer science', '0000-00-00', ''),
-(4, 'CAOS', '2016-02-11', '9 weeks', 'Computer science', '0000-00-00', '');
+(2, 'PDS', '2016-01-15', '12 weeks', 'Computer science', '0000-00-00', ''),
+(3, 'Algorithms', '2015-08-15', '11 weeks', 'Computer science', '0000-00-00', ''),
+(4, 'CAOS', '2016-02-11', '9 weeks', 'Computer science', '0000-00-00', ''),
+(9, 'DBMS', '2016-09-22', '10 weeks', 'Computer science', '0000-00-00', 'syll_DBMS_67845-pat syllabus.pdf'),
+(10, 'Web Design', '2016-10-25', '11 weeks', 'IT', '0000-00-00', 'syllabus_Web Design_40161-cdc_guide.pdf');
 
 -- --------------------------------------------------------
 
@@ -130,13 +131,14 @@ CREATE TABLE IF NOT EXISTS `enrolled_in` (
 --
 
 INSERT INTO `enrolled_in` (`Student_id`, `Grade`, `Course_id`) VALUES
-(1, NULL, 1),
-(2, NULL, 2),
-(2, 'A', 3),
-(1, 'EX', 2),
-(2, NULL, 1),
-(1, 'A', 3),
-(2, NULL, 4);
+(2, 'B', 2),
+(2, 'C', 3),
+(1, 'B', 2),
+(1, 'C', 3),
+(4, 'C', 3),
+(1, 'C', 1),
+(4, 'B', 2),
+(5, 'B', 2);
 
 -- --------------------------------------------------------
 
@@ -150,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `lecture_file` (
   `Lec_name` varchar(255) DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lecture_file`
@@ -174,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `Course_id` int(11) NOT NULL,
   `Message` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notification`
@@ -197,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `parent` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `parent`
@@ -205,6 +207,24 @@ CREATE TABLE IF NOT EXISTS `parent` (
 
 INSERT INTO `parent` (`Parent_id`, `Firstname`, `Lastname`, `email_id`, `username`, `password`, `DOB`) VALUES
 (1, 'ramesh', 'lokhande', 'sdflkjj@gmail.com', 'papaji', '1234', '2003-05-06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prerequisite`
+--
+
+CREATE TABLE IF NOT EXISTS `prerequisite` (
+  `c_id` int(11) NOT NULL,
+  `pre_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prerequisite`
+--
+
+INSERT INTO `prerequisite` (`c_id`, `pre_id`) VALUES
+(3, 2);
 
 -- --------------------------------------------------------
 
@@ -221,14 +241,15 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `password` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL,
   `Institute` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `professor`
 --
 
 INSERT INTO `professor` (`Professor_id`, `Firstname`, `Lastname`, `email_id`, `username`, `password`, `DOB`, `Institute`) VALUES
-(1, 'debapriya', 'das', 'daddycool@gmail.com', 'daddy', '1234', '2001-08-03', NULL);
+(1, 'debapriya', 'das', 'daddycool@gmail.com', 'daddy', '1234', '2001-08-03', NULL),
+(2, 'pabitra', 'mitra', 'pabitra@gmail.com', 'prof1', '1234', '1962-08-07', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
@@ -285,7 +306,11 @@ CREATE TABLE IF NOT EXISTS `teaches` (
 --
 
 INSERT INTO `teaches` (`Course_id`, `Professor_id`) VALUES
-(2, 1);
+(2, 1),
+(3, 1),
+(4, 1),
+(9, 2),
+(10, 2);
 
 --
 -- Indexes for dumped tables
@@ -346,7 +371,7 @@ MODIFY `Assign_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-MODIFY `Course_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `Course_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `lecture_file`
 --
@@ -366,7 +391,7 @@ MODIFY `Parent_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
-MODIFY `Professor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `Professor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `student`
 --

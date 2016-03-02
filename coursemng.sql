@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 02, 2016 at 07:46 PM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Host: 127.0.0.1
+-- Generation Time: Mar 02, 2016 at 08:46 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `assign_file` (
   `deadline` date DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assign_file`
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `Department` varchar(255) DEFAULT NULL,
   `End_date` date NOT NULL,
   `File` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `lecture_file` (
   `Lec_name` varchar(255) DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lecture_file`
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `Course_id` int(11) NOT NULL,
   `Message` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notification`
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `parent` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `parent`
@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `password` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL,
   `Institute` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `professor`
@@ -298,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`

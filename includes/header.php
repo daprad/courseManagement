@@ -7,4 +7,4 @@
 		<div id="header">
 			<h1>DashBoard</h1>
 		</div>
-		<div id="main">
+		<div id="main" >

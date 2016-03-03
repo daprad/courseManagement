@@ -15,7 +15,7 @@
 			?>
 		</p>
 
-		<p> Click <a href="login_part2.php" > Here </a> to login or register </p>
+		<p> Click <a href="login.php" > Here </a> to login or register </p>
 
 	</div>
 

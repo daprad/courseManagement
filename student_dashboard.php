@@ -3,7 +3,7 @@
 <?php require_once("includes/functions.php"); ?>
 <?php include("includes/student_dashboard_up.php"); ?>
 
-		<td id="page">
+		<td id="page" >
 			
 			<?php	
 				if(isset($_SESSION['User_id']))
@@ -13,7 +13,8 @@
 				}
 				else
 				{
-					echo "Session variables can't be retrieved";
+					//echo "Session variables can't be retrieved";
+					header('Location: login.php');
 				}
 				
 				if(strcmp($user_type,"Student")==0)
@@ -34,9 +35,11 @@
 					$student_id = mysql_escape_string($_SESSION['User_id']);
 					$sql = "SELECT * FROM course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
 					$retval = mysql_query( $sql, $conn );
-					if(! $retval ) 
+					$count = mysql_num_rows($retval);
+					if($count<1) 
 					{
-						die('Could not get data: ' . mysql_error());
+						//die('Could not get data: ' . mysql_error());
+						echo "<strong> Not registered in any course...</strong>";
 					}
 					while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
 					{
@@ -69,7 +72,7 @@
 
 			        if($num_count<1) 
 			        {
-			        	echo "<h4>No Courses to Register</h4>";
+			        	echo "<h4>You are not enrolled in any course</h4>";
 			        }
 				    else
 			        {
@@ -317,9 +320,11 @@
 					$student_id = mysql_escape_string($_SESSION['User_id']);
 					$sql = "SELECT * FROM course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
 					$retval = mysql_query( $sql, $conn );
-					if(! $retval ) 
+					$count = mysql_num_rows($retval);
+					if($count<1 ) 
 					{
-						die('Could not get data: ' . mysql_error());
+						//die('Could not get data: ' . mysql_error());
+						echo "<strong>No Courses registered...</strong>";
 					}
 
 					?>
@@ -355,7 +360,48 @@
 				}
 				elseif(isset($_GET['perform']))
 				{
-					echo "perform pressed";
+					//echo "perform pressed";
+
+					$student_id = mysql_escape_string($_SESSION['User_id']);
+
+					$sql = "SELECT * FROM Course WHERE Course_id IN (SELECT Course_id FROM enrolled_in WHERE Student_id='$student_id') ";
+			        $retval = mysql_query( $sql, $conn );
+			        $count = mysql_num_rows($retval);
+			        if($count<1 ) 
+			        {
+			          echo '<strong>You have not registered for any course yet...</strong>';
+			        }
+			        else
+			        {
+			        	?>
+			        	<table>
+			        	<?php
+			        	while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) 
+			        	{
+			        		 $Courseid = $row['Course_id'];
+			        		 $sql = " SELECT Grade from enrolled_in where Course_id='$Courseid' and Student_id = '$student_id' ";
+			        		 $retquery = mysql_query( $sql, $conn );
+			        		 $grade = mysql_fetch_array($retquery, MYSQL_ASSOC);
+				         	 echo "<tr><td><strong> Course Name </strong></td><td align='center'>:</td> <td> <strong>{$row['Course_name']} </strong></td></tr>".
+				         	 "<tr><td>Course_id </td><td align='center'>:</td> <td>{$row['Course_id']} </td></tr>". 
+				             "<tr><td>Department </td><td align='center'>:</td> <td>{$row['Department']} </td></tr>";
+				             if(is_null($grade['Grade']))
+				             {
+				             	echo "<tr><td colspan='3'>currently enrolled in this course</td></tr>";
+				             }
+				             else
+				             {
+				             	echo "<tr><td>Grade </td><td align='center'>:</td> <td>{$grade['Grade']} </td></tr>";
+				             }
+				             
+				             echo "<tr><td colspan='3'>--------------------------------------------------------------------</td></tr>";
+			       		 }
+			       		 ?>
+			       		 </table>
+			       		 <?php	
+			        }
+			        
+						
 				}
 			?>
 			

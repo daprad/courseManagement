@@ -13,7 +13,8 @@
 				}
 				else
 				{
-					echo "Session variables can't be retrieved";
+					//echo "Session variables can't be retrieved";
+					header('Location: login.php');
 				}
 
 				if (strcmp($user_type,"Parent")==0) 

@@ -1,6 +1,2 @@
-add preRequisit table - ankit
-syllabus link in courses(upcoming) - pradeepta
-payments - pradeepta
-admin page - pradeepta, ankit
-report - vardhan
-
+delete course after deleting prof
+delete files after deleting records

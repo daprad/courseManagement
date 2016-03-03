@@ -16,6 +16,7 @@
 
 		if($result = mysql_query($sql,$conn)){
 			$msg = "LOGIN SUCCESSFUL";
+			$_SESSION['user'] = "admin";
 			header('Location: admin_dashboard.php');
 		}
 		else
